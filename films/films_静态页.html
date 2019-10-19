@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="referrer" content="never">
+    <link rel="stylesheet" href="./css/base.css">
+    <script src="./js/common.js"></script>
+    <script src="./datas/films.js"></script>
+    <script src="./js/vue.js"></script>
+    <title>电影分类</title>
+    <script>
+        window.onload = function () {
+            // 搜索框功能
+            let userInput = document.querySelector("#userInput");
+            let seachBtn = document.querySelector("#seachBtn");
+            userInput.onfocus = function () {
+                seachBtn.style.display = "block";
+            }
+            userInput.onblur = function () {
+                seachBtn.style.display = "none";
+                userInput.value = "";
+            }
+
+            var vm=new Vue({
+                el:".app",
+                data:{
+                    list:films.result
+                },
+                methods: {
+                    
+                },
+                filters:{
+                    selClass(target,c){
+                        return Math.ceil(target)>c ? 'open':'close'
+                    },
+                    imgsel(target){
+                        return  "background-image: url("+target+")";
+                    }
+                }
+            })
+            console.log(vm.$data);
+        }
+    </script>
+</head>
+
+<body>
+    <!-- 项目容器 start-->
+    <div class="app">
+        <!-- 头部搜索框 start -->
+        <nav class="nav-box">
+            <div class="nav-input">
+                <input id="userInput" type="text">
+            </div>
+            <div id="seachBtn" class="nav-btn">
+                <span>搜索</span>
+            </div>
+        </nav>
+        <!-- 头部搜索框 end -->
+        <!-- 首页正文 start -->
+        <div class="content-box">
+            <!-- 首页分类列表 start -->
+            <div class="films-box">
+                <div class="list-name">
+                    <span>热门电影</span>
+                </div>
+                <div class="content-list">
+                    <!-- 电影展示组件 start -->
+                    <div class="film-item" v-for="index in list">
+                        <div class="film-img" :style=" index.filmImg  | imgsel"></div>
+                        <div class="film-title"  >{{ index.filmName }}</div>
+                        <div class="film-source">
+                            <span class="star-img " :class=" index.source | selClass(c)" v-for="c in 5" :key="c"></span>
+                            <!-- <span class="star-img open"></span>
+                            <span class="star-img open"></span>
+                            <span class="star-img close"></span>
+                            <span class="star-img close"></span> -->
+                            <span class="star-source">{{index.source==null ? 0 : index.source}}</span>
+                        </div>
+                    </div>
+                    <!-- 电影展示组件 end -->
+                   
+                </div>
+            </div>
+            <!-- 首页分类列表 end -->
+        </div>
+        <!-- 首页正文 end -->
+    </div>
+    <!-- 项目容器 end-->
+</body>
+
+</html>

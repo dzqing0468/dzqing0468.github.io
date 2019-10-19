@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/base.css">
+    <script src="./js/common.js"></script>
+    <script src="datas/detail.js"></script>
+    <script src="./js/vue.js"></script>
+    <title>电影详情</title>
+    <style>
+       /* table{
+           border:1px solid #ccc;
+       }
+        td,th{
+           padding:5px 10px;
+       } */
+    </style>
+    <script>
+        window.onload = function () {
+            // 搜索框功能
+          
+            var vm=new Vue({
+            el:".app",
+            data:{
+                
+                    res: [
+                            {
+                                applyDate: "2019-10",
+                                ebId: "301",
+                                ebReportingUnit: "国资委",
+                                money: [
+                                { "ebId": "301", "ebMoney": "1", "fbmId": "61", "fbmName": "期初现金金额", "fbmNumber": "一" },
+                                { "ebId": "301", "ebMoney": "0", "fbmId": "62", "fbmName": "其中：可用资金", "fbmNumber": "" },
+                                { "ebId": "301", "ebMoney": "3", "fbmId": "63", "fbmName": "银行保证金及存单质押", "fbmNumber": "" },
+                                { "ebId": "301", "ebMoney": "0", "fbmId": "64", "fbmName": "加：各项收入合计", "fbmNumber": "二" },
+                                { "ebId": "301", "ebMoney": "5", "fbmId": "81", "fbmName": "其中：     向金融机构借款", "fbmNumber": "" },
+                                ]
+                            },
+                            {
+                                applyDate: "2019-10",
+                                ebId: "302",
+                                ebReportingUnit: "镇江市国有投资控股集团有限公司",
+                                money: [
+                                { "ebId": "302", "ebMoney": "1", "fbmId": "61", "fbmName": "期初现金金额", "fbmNumber": "一" },
+                                { "ebId": "302", "ebMoney": "2", "fbmId": "62", "fbmName": "其中：可用资金", "fbmNumber": "" },
+                                { "ebId": "302", "ebMoney": "3", "fbmId": "63", "fbmName": "银行保证金及存单质押", "fbmNumber": "" },
+                                { "ebId": "302", "ebMoney": "4", "fbmId": "64", "fbmName": "加：各项收入合计", "fbmNumber": "二" },
+                                { "ebId": "302", "ebMoney": "5", "fbmId": "81", "fbmName": "其中：     向金融机构借款", "fbmNumber": "" },
+                                ]
+                            },
+                            {
+                                applyDate: "2019-10",
+                                ebId: "302",
+                                ebReportingUnit: "镇江市国限公司",
+                                money: [
+                                { "ebId": "302", "ebMoney": "1", "fbmId": "61", "fbmName": "期初现金金额", "fbmNumber": "一" },
+                                { "ebId": "302", "ebMoney": "2", "fbmId": "62", "fbmName": "其中：可用资金", "fbmNumber": "" },
+                                { "ebId": "302", "ebMoney": "3", "fbmId": "63", "fbmName": "银行保证金及存单质押", "fbmNumber": "" },
+                                { "ebId": "302", "ebMoney": "4", "fbmId": "64", "fbmName": "加：各项收入合计", "fbmNumber": "二" },
+                                { "ebId": "302", "ebMoney": "5", "fbmId": "81", "fbmName": "其中：     向金融机构借款", "fbmNumber": "" },
+                                ]
+                            }
+                        ]
+               
+            }         
+
+         }) 
+
+      
+        }
+
+      
+    </script>
+</head>
+
+<body>
+    <!-- 项目容器 start-->
+<div class="app">
+<table >
+    <tr><td>序号</td><td>x项目</td><td v-for=" item in res" > {{ item.ebReportingUnit}}</td></tr>
+    <tr>
+    <!-- //序号 -->
+    <td   >
+        <table >
+            <tr v-for="c in 5">
+                <td>{{c}}</td>
+            </tr>
+        </table>
+    </td> 
+    <!-- 项目 -->
+
+    <td>
+        <table>
+            <tr  v-for="(v,k) in res[0].money">
+                <td> {{v.fbmName}}</td>
+            </tr>
+        </table>
+    </td>
+    <!--  循环公司名称-->
+    <td v-for="(v,k) in res">
+        <table>
+            <tr  v-for="(v1,k1) in res[k].money">
+            <td> {{v1.ebMoney}}</td>
+            </tr>
+        </table>
+    </td>
+  </tr>
+</table>
+        
+</div>
+   
+</body>
+
+</html>
